@@ -275,7 +275,7 @@ dependencies = [
 
 [[package]]
 name = "siafudb-cell"
-version = "0.0.1"
+version = "0.2.0"
 dependencies = [
  "base64",
  "ed25519-dalek",
