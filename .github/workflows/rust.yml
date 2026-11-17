@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@{"message":"Not Found","documentation_url":"https://docs.github.com/rest/git/tags#get-a-tag","status":"404"}11d5960a326750d5838078e36cf38b85af677262 # v4
+    - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 Found","documentation_url":"https://docs.github.com/rest/git/tags#get-a-tag","status":"404"}11d5960a326750d5838078e36cf38b85af677262 # v4
     - name: Build
       run: cargo build --verbose
     - name: Run tests
