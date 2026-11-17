@@ -30,6 +30,10 @@ stores. A change to the spec is checked against SiafuDB, and the other way round
   must be green; the org-required `All checks green` check (nyuchi/.github) enforces it.
 - **Every pull request references an issue** and targets `staging`. Releases go from `staging`
   to `main` through a release pull request.
+- **Versions come from the tags.** A merge into `staging` is tagged as the next patch
+  (`staging-version.yml`), and a release to `main` as the next minor (`main-release.yml`). A PR
+  that changes the version files sets them to the next patch, the one the release version
+  check names. Never set them to the next minor: `staging` refuses it.
 
 ## Before you push
 

@@ -1,0 +1,52 @@
+name: Release
+
+# Releasing is a merge of `staging` into main. Nobody bumps a version file or
+# pushes a tag by hand.
+#
+# When CI passes on a push to main, the `tag` job computes the version from
+# the tags (nyuchi/.github#80: the next MINOR above the highest tag, so v0.1.1
+# from staging-version.yml becomes v0.2.0 here), tags the commit if it carries
+# no version tag yet, and creates the GitHub release with generated notes. A
+# MAJOR is only ever released by hand: run this workflow with bump: major.
+#
+# The version is not read from Cargo.toml. The version files hold the last
+# staging (beta) version, which staging-version.yml has already tagged; that
+# is what lets the release PR pass release-version-check (#22).
+#
+# The file is named main-release.yml on purpose: the org's auto-release.yml
+# (the bundu-release app) skips tagging in repos that have it, so a release is
+# tagged once, here. The app still opens the release PRs.
+
+on:
+  workflow_run:
+    workflows: ["CI"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: >-
+          Versioning policy override. main releases the next minor; a major
+          is only ever made by hand, here.
+        type: choice
+        options: [minor, patch, major]
+        default: minor
+
+permissions:
+  contents: read
+
+jobs:
+  tag:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.event == 'push')
+    uses: nyuchi/.github/.github/workflows/reusable-auto-tag.yml@925d067322defd676dacd90f2c2b0540cb10f644  # v0.11.1
+    with:
+      # Empty: compute the version from the tags, so no file needs a bump.
+      version-command: ""
+      bump: ${{ inputs.bump || '' }}
+      ref: ${{ github.event.workflow_run.head_sha || github.sha }}
+      create-release: true
+    permissions:
+      contents: write
