@@ -31,3 +31,5 @@ jobs:
         run: cargo clippy --all-targets -- -D warnings
       - name: Test (the stress tests, RFC 8785 vectors and the CLI)
         run: cargo test
+      - name: Run the README's example
+        run: cargo run --example quickstart

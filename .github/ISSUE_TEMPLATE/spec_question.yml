@@ -1,0 +1,27 @@
+name: Spec question or proposal
+description: Argue for an answer to an open question, or propose a change to the draft spec.
+title: "spec: "
+labels: ["spec"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The spec is a 0.1.0 draft. Its open questions are listed in SPEC.md. Pick one, or raise
+        a new one, and argue for an answer. A test case that shows the problem helps most.
+  - type: textarea
+    id: question
+    attributes:
+      label: The question
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: What you propose, and why
+    validations:
+      required: true
+  - type: textarea
+    id: standard
+    attributes:
+      label: The existing standard it follows
+      description: The .cell adopts published standards before inventing anything. Which one applies?
