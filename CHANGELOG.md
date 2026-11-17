@@ -6,6 +6,11 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+### Changed
+
+- The first release is 0.1.0, not 0.0.1: the main-release policy makes a first release the
+  next minor above nothing.
+
 ### Added
 
 - The README, rewritten for developers: the problem, a 30-second CLI walkthrough, the Rust API,
@@ -15,7 +20,7 @@ All notable changes to this repository are documented here. This file follows
   `CODEOWNERS`, a pull request template, issue templates and Dependabot for Cargo and Actions
   (with a 7-day cooldown on newly published versions).
 
-## [0.0.1] - 2026-11-17
+## [0.1.0] - 2026-11-17
 
 ### Added
 
