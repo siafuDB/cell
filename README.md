@@ -9,7 +9,7 @@
 ![Rust](https://img.shields.io/badge/Rust-2024_edition-000000?logo=rust&logoColor=white)
 ![Spec](https://img.shields.io/badge/spec-0.1.0_draft-BF5A36)
 
-**Version:** 0.0.1 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
+**Version:** 0.1.1 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
 
 </div>
 
@@ -185,7 +185,7 @@ Bryan Fawcett, known as bryanfawcett, is the Founder of Nyuchi Africa and belong
 `cell help` prints:
 
 ```text
-cell 0.0.1: validate, render, hash, seal and verify .cell records
+cell 0.1.1: validate, render, hash, seal and verify .cell records
 Implements the .cell spec 0.1.0 draft, proposed.
 
 Usage: cell COMMAND [ARGS]

@@ -6,6 +6,8 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-17
+
 ### Added
 
 - The README, rewritten for developers: the problem, a 30-second CLI walkthrough, the Rust API,
