@@ -1,0 +1,19 @@
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3H9",
+  "name": "Nyuchi Africa",
+  "legalName": "Nyuchi Africa (Pvt) Ltd",
+  "url": "https://nyuchi.com",
+  "foundingLocation": {
+    "@type": "Place",
+    "name": "Harare"
+  },
+  "founder": {
+    "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3D5",
+    "name": "Bryan Fawcett"
+  },
+  "text": "{{legalName}} is an organisation entity, founded in {{foundingLocation.name}} by {{founder.name}}. It builds and operates Mukoko.",
+  "cell:version": 1,
+  "cell:hash": "sha256-Oi-Z2pbhIXUc8gofi-1VgcE76faOq0cSy6GMFO1c1ys"
+}

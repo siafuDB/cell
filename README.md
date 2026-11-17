@@ -160,6 +160,26 @@ siafudb-cell = { git = "https://github.com/siafuDB/cell" }
 | `verify_proof` | Checks the signature against the owner's public key                           |
 | `keys`         | A fresh Ed25519 key pair from the system's randomness                         |
 
+## A real profile, in three cells
+
+[`examples/profile/`](examples/profile) is a whole person's profile as a platform would hold it, built from
+our founder's real record: three cells that point at each other by `@id`.
+
+| Cell | Type | What it holds |
+| --- | --- | --- |
+| [`person.cell`](examples/profile/person.cell) | `Person` | Name, handle, nationality, language, five interests, and a founder role in two entities |
+| [`family.cell`](examples/profile/family.cell) | `Organization`, `bundu:Family` | The household entity and its members |
+| [`nyuchi-africa.cell`](examples/profile/nyuchi-africa.cell) | `Organization` | The company, where it was founded, and its founder |
+
+The public facts are real. Anything personal is a sample: the email (`person@example.org`), the phone
+number, the family's name and every `@id`. Each cell passes `cell check` with no warnings, and the
+tests check that every link resolves to a cell in the set.
+
+```console
+$ cell render examples/profile/person.cell
+Bryan Fawcett, known as bryanfawcett, is the Founder of Nyuchi Africa and belongs to The Sample family. Interests: Technology, AI & Machine Learning, Fintech & Mobile Money, Wildlife & Conservation and African Identity.
+```
+
 ## The CLI
 
 `cell help` prints:
@@ -220,7 +240,7 @@ The test suite does not just check the happy path. It attacks the format:
   back, and the hash holds even though Postgres rewrote the bytes. Run it with `CELL_PG="psql -h HOST -U postgres" cargo test -- --ignored`.
 
 ```sh
-cargo test           # 41 tests; the Postgres round trip runs with --ignored
+cargo test           # 44 tests; the Postgres round trip runs with --ignored
 cargo clippy --all-targets -- -D warnings
 cargo fmt --check
 ```
