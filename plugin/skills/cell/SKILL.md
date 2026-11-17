@@ -113,17 +113,17 @@ A cell is the record; SiafuDB is where it lives and how it moves.
 Build it from the repository with `cargo build --release` (or `cargo run -- COMMAND`). `FILE`
 may be `-` to read standard input. Exit codes: 0 ok, 1 invalid or failed, 2 usage error.
 
-| Command | Example | What it does |
-| ------- | ------- | ------------ |
-| `cell check` | `cell check v2.cell --previous v1.cell` | Validate; `--previous` adds the version chain. Prints `warning:` and `error:` lines; exits 1 on any error |
-| `cell render` | `cell render asthma.cell --lang sn` | Print the text with every `{{field}}` filled in |
-| `cell hash` | `cell hash asthma.cell` | Print the computed hash and whether it matches `cell:hash`; exits 1 on a mismatch |
-| `cell canonical` | `cell canonical asthma.cell` | Print the RFC 8785 (JCS) form |
-| `cell keygen` | `cell keygen --out alice` | Write `alice.key` (secret, mode 0600 on Unix, never printed) and `alice.pub`; refuses to overwrite |
-| `cell seal` | `cell seal draft.cell --key alice.key > asthma.cell` | Set `cell:hash`, sign, print the sealed cell; refuses a cell with errors |
-| `cell verify` | `cell verify asthma.cell --pub alice.pub` | Check the proof; exits 0 if valid, 1 if not |
-| `cell help` | `cell help seal` | List every command, or the details of one (`cell seal --help` too) |
-| `cell version` | `cell version` | The crate version and the spec version it implements |
+| Command          | Example                                              | What it does                                                                                              |
+| ---------------- | ---------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `cell check`     | `cell check v2.cell --previous v1.cell`              | Validate; `--previous` adds the version chain. Prints `warning:` and `error:` lines; exits 1 on any error |
+| `cell render`    | `cell render asthma.cell --lang sn`                  | Print the text with every `{{field}}` filled in                                                           |
+| `cell hash`      | `cell hash asthma.cell`                              | Print the computed hash and whether it matches `cell:hash`; exits 1 on a mismatch                         |
+| `cell canonical` | `cell canonical asthma.cell`                         | Print the RFC 8785 (JCS) form                                                                             |
+| `cell keygen`    | `cell keygen --out alice`                            | Write `alice.key` (secret, mode 0600 on Unix, never printed) and `alice.pub`; refuses to overwrite        |
+| `cell seal`      | `cell seal draft.cell --key alice.key > asthma.cell` | Set `cell:hash`, sign, print the sealed cell; refuses a cell with errors                                  |
+| `cell verify`    | `cell verify asthma.cell --pub alice.pub`            | Check the proof; exits 0 if valid, 1 if not                                                               |
+| `cell help`      | `cell help seal`                                     | List every command, or the details of one (`cell seal --help` too)                                        |
+| `cell version`   | `cell version`                                       | The crate version and the spec version it implements                                                      |
 
 A typical round: write the draft without `cell:hash` or `proof`, run `cell seal` to hash and
 sign it, then `cell check` and `cell verify`. To make a new version, copy the sealed cell,

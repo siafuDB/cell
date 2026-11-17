@@ -85,15 +85,6 @@ fn every_listed_command_is_in_the_skill() {
 }
 
 #[test]
-fn the_in_repo_skill_is_a_copy_of_the_plugin_skill() {
-    assert_eq!(
-        read(".claude/skills/cell/SKILL.md"),
-        read(SKILL),
-        "copy plugin/skills/cell/SKILL.md to .claude/skills/cell/SKILL.md"
-    );
-}
-
-#[test]
 fn the_skill_has_frontmatter() {
     let skill = read(SKILL);
     let front = skill

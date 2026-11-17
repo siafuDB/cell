@@ -92,9 +92,9 @@ format and SiafuDB. It is Markdown only: no scripts and no hooks.
 /plugin install cell@siafudb-cell
 ```
 
-The skill is `plugin/skills/cell/SKILL.md`; agents working in this repository get the same
-skill from `.claude/skills/cell/SKILL.md`, a copy that `cargo test` keeps identical. The tests
-also check that every command `cell help` lists appears in the skill and that the plugin
+The skill is `plugin/skills/cell/SKILL.md`, served from this repository through the plugin
+marketplace; agents working here install it the same way (`.claude/` stays out of the
+repository, by the org rule). The tests check that every command `cell help` lists appears in the skill and that the plugin
 version is the crate version.
 
 ## Licence

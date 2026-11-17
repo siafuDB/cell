@@ -53,12 +53,11 @@ fn cell_stdin(args: &[&str], input: &str) -> Output {
         .stderr(Stdio::piped())
         .spawn()
         .unwrap();
-    child
-        .stdin
-        .take()
-        .unwrap()
-        .write_all(input.as_bytes())
-        .unwrap();
+    // A usage error exits before reading stdin, so the write can meet a closed pipe; the
+    // exit status is what the test checks.
+    if let Err(e) = child.stdin.take().unwrap().write_all(input.as_bytes()) {
+        assert_eq!(e.kind(), std::io::ErrorKind::BrokenPipe, "{e}");
+    }
     child.wait_with_output().unwrap()
 }
 
