@@ -1,0 +1,65 @@
+name: All checks green
+
+# Nothing merges while anything is red or orange. This job waits for every other check and
+# status on the commit to finish, then fails if any of them is not green: a failure, an error,
+# a cancelled run, a timeout, an action_required or neutral result, or a status still pending
+# when the wait runs out. Skipped checks count as green. Make "All checks green" a required
+# check, and every check behind it becomes required too, including ones added later.
+
+on:
+  pull_request:
+    branches: [main, staging]
+    types: [opened, reopened, synchronize, ready_for_review]
+  merge_group:
+
+permissions:
+  checks: read
+  statuses: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+jobs:
+  all-green:
+    name: All checks green
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Wait for every other check, then fail on anything not green
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          SELF: All checks green
+        run: |
+          set -euo pipefail
+          # Give the other workflows time to register their checks.
+          sleep 30
+          for attempt in $(seq 1 120); do
+            runs=$(gh api --paginate "repos/$REPO/commits/$SHA/check-runs?per_page=100" \
+              --jq ".check_runs[] | select(.name != \"$SELF\") | [.name, .status, (.conclusion // \"\")] | @tsv")
+            statuses=$(gh api "repos/$REPO/commits/$SHA/status" \
+              --jq '.statuses[] | [.context, .state] | @tsv')
+
+            red=$(printf '%s\n' "$runs" | awk -F'\t' 'NF && $2=="completed" && $3!="success" && $3!="skipped"')
+            red_status=$(printf '%s\n' "$statuses" | awk -F'\t' 'NF && ($2=="failure" || $2=="error")')
+            if [ -n "$red$red_status" ]; then
+              echo "::error::Not green, so this must not merge:"
+              printf '%s\n' "$red" "$red_status" | sed '/^$/d'
+              exit 1
+            fi
+
+            waiting=$(printf '%s\n' "$runs" | awk -F'\t' 'NF && $2!="completed"')
+            waiting_status=$(printf '%s\n' "$statuses" | awk -F'\t' 'NF && $2=="pending"')
+            if [ -z "$waiting$waiting_status" ]; then
+              echo "Every check and status is green."
+              exit 0
+            fi
+            echo "Waiting on (attempt $attempt):"
+            printf '%s\n' "$waiting" "$waiting_status" | sed '/^$/d' | cut -f1 | sed 's/^/  /'
+            sleep 20
+          done
+          echo "::error::Still orange after the wait: these never finished."
+          printf '%s\n' "$waiting" "$waiting_status" | sed '/^$/d'
+          exit 1
