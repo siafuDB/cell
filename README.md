@@ -27,14 +27,75 @@ The prototype is a Rust crate, `siafudb-cell`, with a library and a `cell` comma
 ```sh
 cargo run -- check FILE.cell    # validate one cell; exits 1 if it has errors
 cargo run -- render FILE.cell   # print its text with facts filled in
-cargo test                      # the stress tests, RFC 8785 test vectors and the CLI
+cargo test                      # stress tests, RFC 8785 vectors, the CLI and the skill
 CELL_PG="psql -h HOST -U postgres" cargo test -- --ignored   # adds the Postgres round trip
 ```
 
 The validator is a prototype for stress-testing the draft, not the reference implementation.
-The library has the same functions as the command: `parse` (I-JSON, refusing duplicate
+The library holds the logic behind the command: `parse` (I-JSON, refusing duplicate
 members), `canonicalize` (RFC 8785), `hash`, `resolve`, `texts`, `render`, `validate`, `seal`
 and `verify_proof` (an Ed25519 proof in the shape of VC Data Integrity).
+
+## CLI
+
+`cargo build --release` builds the `cell` command at `target/release/cell` (or run it as
+`cargo run -- COMMAND`). It uses the standard library only for its argument handling.
+`cell help` prints:
+
+```text
+cell 0.0.1: validate, render, hash, seal and verify .cell records
+Implements the .cell spec 0.1.0 draft, proposed.
+
+Usage: cell COMMAND [ARGS]
+       cell help COMMAND
+
+Commands:
+  check      Validate a cell, and its version chain with --previous
+  render     Print a cell's text with every {{field}} filled in
+  hash       Print the content hash and say whether it matches cell:hash
+  canonical  Print the cell in RFC 8785 (JCS) canonical form
+  keygen     Make an Ed25519 key pair: NAME.key (secret) and NAME.pub
+  seal       Set cell:hash and sign it; prints the sealed cell
+  verify     Check a cell's proof against a public key
+  help       Show this list, or the details of one command
+  version    Print the crate version and the spec version it implements
+
+FILE may be - to read the cell from standard input.
+
+Exit codes:
+  0  ok
+  1  the cell is invalid, or a check, a read or a write failed
+  2  usage error: an unknown command or flag, or a missing argument
+
+Examples:
+  cell check asthma.cell
+  cell check v2.cell --previous v1.cell
+  cell render asthma.cell --lang sn
+  cell keygen --out alice
+  cell seal draft.cell --key alice.key > asthma.cell
+  cell verify asthma.cell --pub alice.pub
+  cat asthma.cell | cell hash -
+
+Run `cell help COMMAND` for the details of one command.
+```
+
+`cell help COMMAND` or `cell COMMAND --help` gives the details of one command.
+
+## Install the skill
+
+This repository is also a Claude Code plugin marketplace. The `cell` plugin carries one skill,
+for writing, validating, rendering, sealing and verifying cells and for questions about the
+format and SiafuDB. It is Markdown only: no scripts and no hooks.
+
+```text
+/plugin marketplace add siafuDB/cell
+/plugin install cell@siafudb-cell
+```
+
+The skill is `plugin/skills/cell/SKILL.md`; agents working in this repository get the same
+skill from `.claude/skills/cell/SKILL.md`, a copy that `cargo test` keeps identical. The tests
+also check that every command `cell help` lists appears in the skill and that the plugin
+version is the crate version.
 
 ## Licence
 

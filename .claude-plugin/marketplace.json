@@ -1,0 +1,18 @@
+{
+  "name": "siafudb-cell",
+  "owner": {
+    "name": "Bundu Foundation",
+    "email": "foundation@bundu.org",
+    "url": "https://siafudb.org"
+  },
+  "metadata": {
+    "description": "The .cell Claude Code marketplace, served from the siafuDB/cell repository: one plugin, `cell`, with the .cell agent skill. Markdown only."
+  },
+  "plugins": [
+    {
+      "name": "cell",
+      "source": "./plugin",
+      "description": "The .cell skill: write, validate, render, seal and verify .cell records with the `cell` command, and how a cell maps to SiafuDB. The spec is a proposed 0.1.0 draft. Markdown only."
+    }
+  ]
+}
