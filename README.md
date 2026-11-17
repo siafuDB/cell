@@ -9,7 +9,9 @@
 ![Rust](https://img.shields.io/badge/Rust-2024_edition-000000?logo=rust&logoColor=white)
 ![Spec](https://img.shields.io/badge/spec-0.1.0_draft-BF5A36)
 
-**Version:** 0.0.1 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
+<a href="#see-it-in-30-seconds"><img src="docs/media/tamper-demo.gif" width="560" alt="A terminal recording: the cell command seals a health record, someone changes the medicine name behind the owner's back, and cell check catches it at once: the hash no longer matches the content. No server, no network."></a>
+
+**Version:** 0.1.1 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
 
 </div>
 
@@ -46,6 +48,10 @@ Integrity already exist. The .cell is the envelope that holds them together so t
 drift apart.
 
 ## See it in 30 seconds
+
+Watch it first: a sealed health record, one word changed behind its owner's back, and the
+change caught. [Terminal recording (MP4, 30 s)](docs/media/tamper-demo-terminal.mp4) ·
+[Animated explainer (MP4, 28 s)](docs/media/tamper-demo-explainer.mp4). Then run it yourself:
 
 ```sh
 cargo install --git https://github.com/siafuDB/cell
@@ -160,12 +166,32 @@ siafudb-cell = { git = "https://github.com/siafuDB/cell" }
 | `verify_proof` | Checks the signature against the owner's public key                           |
 | `keys`         | A fresh Ed25519 key pair from the system's randomness                         |
 
+## A real profile, in three cells
+
+[`examples/profile/`](examples/profile) is a whole person's profile as a platform would hold it, built from
+our founder's real record: three cells that point at each other by `@id`.
+
+| Cell | Type | What it holds |
+| --- | --- | --- |
+| [`person.cell`](examples/profile/person.cell) | `Person` | Name, handle, nationality, language, five interests, and a founder role in two entities |
+| [`family.cell`](examples/profile/family.cell) | `Organization`, `bundu:Family` | The household entity and its members |
+| [`nyuchi-africa.cell`](examples/profile/nyuchi-africa.cell) | `Organization` | The company, where it was founded, and its founder |
+
+The public facts are real. Anything personal is a sample: the email (`person@example.org`), the phone
+number, the family's name and every `@id`. Each cell passes `cell check` with no warnings, and the
+tests check that every link resolves to a cell in the set.
+
+```console
+$ cell render examples/profile/person.cell
+Bryan Fawcett, known as bryanfawcett, is the Founder of Nyuchi Africa and belongs to The Sample family. Interests: Technology, AI & Machine Learning, Fintech & Mobile Money, Wildlife & Conservation and African Identity.
+```
+
 ## The CLI
 
 `cell help` prints:
 
 ```text
-cell 0.0.1: validate, render, hash, seal and verify .cell records
+cell 0.1.1: validate, render, hash, seal and verify .cell records
 Implements the .cell spec 0.1.0 draft, proposed.
 
 Usage: cell COMMAND [ARGS]
@@ -220,7 +246,7 @@ The test suite does not just check the happy path. It attacks the format:
   back, and the hash holds even though Postgres rewrote the bytes. Run it with `CELL_PG="psql -h HOST -U postgres" cargo test -- --ignored`.
 
 ```sh
-cargo test           # 41 tests; the Postgres round trip runs with --ignored
+cargo test           # 44 tests; the Postgres round trip runs with --ignored
 cargo clippy --all-targets -- -D warnings
 cargo fmt --check
 ```

@@ -6,6 +6,8 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-17
+
 ### Added
 
 - The README, rewritten for developers: the problem, a 30-second CLI walkthrough, the Rust API,
@@ -14,6 +16,9 @@ All notable changes to this repository are documented here. This file follows
 - Repository docs ([#3](https://github.com/siafuDB/cell/issues/3)): `AGENTS.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`,
   `CODEOWNERS`, a pull request template, issue templates and Dependabot for Cargo and Actions
   (with a 7-day cooldown on newly published versions).
+- `examples/profile/`: a person, their family and their organisation as three linked cells,
+  built from the founder's real profile with every personal detail replaced by a sample.
+  `tests/examples.rs` checks that each validates with no warnings and that every link resolves.
 
 ## [0.0.1] - 2026-11-17
 
