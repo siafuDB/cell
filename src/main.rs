@@ -14,6 +14,7 @@ use siafudb_cell::{parse, render, validate};
 const USAGE: &str = "usage: cell check FILE.cell | cell render FILE.cell";
 
 fn main() -> ExitCode {
+    // nosemgrep: rust.lang.security.args.args -- argv[0] is skipped; the subcommand and file path are not used for any security decision.
     let args: Vec<String> = std::env::args().skip(1).collect();
     let [cmd, file] = args.as_slice() else {
         eprintln!("{USAGE}");
