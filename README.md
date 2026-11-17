@@ -9,6 +9,8 @@
 ![Rust](https://img.shields.io/badge/Rust-2024_edition-000000?logo=rust&logoColor=white)
 ![Spec](https://img.shields.io/badge/spec-0.1.0_draft-BF5A36)
 
+<a href="#see-it-in-30-seconds"><img src="docs/media/tamper-demo.gif" width="560" alt="A terminal recording: the cell command seals a health record, someone changes the medicine name behind the owner's back, and cell check catches it at once: the hash no longer matches the content. No server, no network."></a>
+
 **Version:** 0.1.1 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
 
 </div>
@@ -46,6 +48,10 @@ Integrity already exist. The .cell is the envelope that holds them together so t
 drift apart.
 
 ## See it in 30 seconds
+
+Watch it first: a sealed health record, one word changed behind its owner's back, and the
+change caught. [Terminal recording (MP4, 30 s)](docs/media/tamper-demo-terminal.mp4) ·
+[Animated explainer (MP4, 28 s)](docs/media/tamper-demo-explainer.mp4). Then run it yourself:
 
 ```sh
 cargo install --git https://github.com/siafuDB/cell
