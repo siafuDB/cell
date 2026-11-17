@@ -1,7 +1,7 @@
 //! Keeps the skill served from this repository in step with the code: the plugin manifests
 //! parse, carry the crate version, every command `cell help` lists is in the skill, the
 //! in-repo copy matches the plugin skill, the skill's example cell is valid, and the README
-//! shows the current `cell help`.
+//! shows the current `cell help` and the quickstart example.
 
 use std::path::Path;
 use std::process::Command;
@@ -123,5 +123,18 @@ fn the_readme_shows_the_current_help() {
     assert!(
         read("README.md").contains(&format!("```text\n{help}```")),
         "paste the output of `cell help` into the README's CLI section"
+    );
+}
+
+#[test]
+fn the_readme_shows_the_quickstart_example() {
+    let example = read("examples/quickstart.rs");
+    let code = example
+        .split_once("\n\n")
+        .map(|(_, rest)| rest)
+        .expect("a doc comment, a blank line, then the code");
+    assert!(
+        read("README.md").contains(&format!("```rust\n{code}```")),
+        "paste examples/quickstart.rs (without its doc comment) into the README's Rust section"
     );
 }

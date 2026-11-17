@@ -1,0 +1,6 @@
+# Who reviews what in siafuDB/cell. GitHub requests their review when a pull request
+# touches a matching path.
+
+*           @bryanfawcett
+/SPEC.md    @bryanfawcett
+/.github/   @bryanfawcett
