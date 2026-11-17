@@ -5,6 +5,8 @@ updates:
     target-branch: staging
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: build
     groups:
@@ -15,6 +17,8 @@ updates:
     target-branch: staging
     schedule:
       interval: weekly
+    cooldown:
+      default-days: 7
     commit-message:
       prefix: ci
     groups:

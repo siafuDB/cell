@@ -12,7 +12,8 @@ All notable changes to this repository are documented here. This file follows
   the test suite and the open questions, every output taken from a real run.
 - `examples/quickstart.rs`, the README's Rust example, built and run by CI.
 - Repository docs ([#3](https://github.com/siafuDB/cell/issues/3)): `AGENTS.md`, `CONTRIBUTING.md`, `SECURITY.md`, `CODE_OF_CONDUCT.md`,
-  `CODEOWNERS`, a pull request template, issue templates and Dependabot for Cargo and Actions.
+  `CODEOWNERS`, a pull request template, issue templates and Dependabot for Cargo and Actions
+  (with a 7-day cooldown on newly published versions).
 
 ## [0.0.1] - 2026-11-17
 
