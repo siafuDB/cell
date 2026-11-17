@@ -118,9 +118,11 @@ names that appear in `text` but not as references.
 
 ## Stress test, pass 1 (2026-11-17)
 
-`tools/cell.mjs` is a prototype validator; `tools/cell.test.mjs` runs 13 hostile cases against
-it (`node --test tools/cell.test.mjs`; set `CELL_PG` to a `psql` command to add
-the Postgres round trip). Facts and prose stayed in step in every case. The draft needs these
+The Rust crate at the root of this repository (`siafudb-cell`, with the `cell` command) is a
+prototype validator; `tests/stress.rs` runs 13 hostile cases against it (`cargo test`; set
+`CELL_PG` to a `psql` command and run `cargo test -- --ignored` to add the Postgres round
+trip). Pass 1 first ran on a JavaScript prototype; the Rust port gives the same results. Facts
+and prose stayed in step in every case. The draft needs these
 decisions before it can be adopted; none is made yet:
 
 1. "Same in a file and a database" means the same canonical form and hash, not the same bytes.
