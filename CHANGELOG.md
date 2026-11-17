@@ -6,6 +6,14 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+### Changed
+
+- Releases are tagged from the tags, not the version files ([#22](https://github.com/siafuDB/cell/issues/22)).
+  `staging-version.yml` tags every merge into `staging` as the next patch, and
+  `main-release.yml` tags every release to `main` as the next minor and publishes it. The
+  version files hold the last staging version, so the first release from here is v0.2.0 while
+  the files say 0.1.1.
+
 ## [0.1.1] - 2026-11-17
 
 ### Added
