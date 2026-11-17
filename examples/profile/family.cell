@@ -1,0 +1,27 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "bundu": "https://vocab.bundu.org/"
+    }
+  ],
+  "@type": [
+    "Organization",
+    "bundu:Family"
+  ],
+  "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3F7",
+  "name": "The Sample family",
+  "member": [
+    {
+      "@type": "Role",
+      "roleName": "Founder",
+      "member": {
+        "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3D5",
+        "name": "Bryan Fawcett"
+      }
+    }
+  ],
+  "text": "{{name}} is a family entity. Its {{member.0.roleName}} is {{member.0.member.name}}. A family's cells stay with the family: other members appear here only when they add themselves.",
+  "cell:version": 1,
+  "cell:hash": "sha256-W7ryRt8jBXxEQZpqhSdXAeeaQfPPt2o_rhQOFXsPdHs"
+}
