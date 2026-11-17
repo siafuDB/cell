@@ -27,7 +27,7 @@ stores. A change to the spec is checked against SiafuDB, and the other way round
 - **Every claim in the README is checked.** Counts, outputs and links come from a real run.
   `examples/quickstart.rs` is the README's Rust example; keep them identical.
 - **Nothing merges while anything is red or orange.** Every check and status on the head commit
-  must be green; the `All checks green` job enforces it.
+  must be green; the org-required `All checks green` check (nyuchi/.github) enforces it.
 - **Every pull request references an issue** and targets `staging`. Releases go from `staging`
   to `main` through a release pull request.
 
