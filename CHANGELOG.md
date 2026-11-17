@@ -13,6 +13,9 @@ All notable changes to this repository are documented here. This file follows
   `main-release.yml` tags every release to `main` as the next minor and publishes it. The
   version files hold the last staging version, so the first release from here is v0.2.0 while
   the files say 0.1.1.
+- Removed `.github/workflows/rust.yml`, GitHub's starter Rust workflow
+  ([#22](https://github.com/siafuDB/cell/issues/22)). `ci.yml` already builds and tests the
+  crate, with fmt and clippy, pinned actions and a `permissions:` block.
 
 ## [0.1.1] - 2026-11-17
 
