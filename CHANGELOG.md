@@ -6,13 +6,15 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+## [0.1.3] - 2026-11-17
+
 ### Changed
 
 - Releases are tagged from the tags, not the version files ([#22](https://github.com/siafuDB/cell/issues/22)).
   `staging-version.yml` tags every merge into `staging` as the next patch, and
   `main-release.yml` tags every release to `main` as the next minor and publishes it. The
-  version files hold the last staging version, so the first release from here is v0.2.0 while
-  the files say 0.1.1.
+  version files hold the version of the last merge into `staging`, so the release after 0.1.3
+  is v0.2.0. (v0.1.2 was tagged on a merge that left the files at 0.1.1.)
 - Removed `.github/workflows/rust.yml`, GitHub's starter Rust workflow
   ([#22](https://github.com/siafuDB/cell/issues/22)). `ci.yml` already builds and tests the
   crate, with fmt and clippy, pinned actions and a `permissions:` block.
