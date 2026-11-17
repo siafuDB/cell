@@ -166,19 +166,12 @@ fn integers_above_2_53_are_rounded_by_jcs_so_the_hash_differs_by_language() {
         jcs, r#"{"@id":"urn:cell:x","nationalId":12345678901234568}"#,
         "JCS reads every number as a double, so the integer is rounded (as JavaScript does)"
     );
-    let out = Command::new("python3")
-        .args([
-            "-c",
-            "import json,sys;print(json.dumps(json.loads(sys.argv[1]),separators=(',',':'),sort_keys=True))",
-            text,
-        ])
-        .output()
-        .expect("python3 runs");
-    let py = String::from_utf8(out.stdout).unwrap();
+    // A language that keeps integers exact (Python's json, for one) would write this form
+    // instead, so the two canonical forms, and their hashes, disagree.
+    let exact = r#"{"@id":"urn:cell:x","nationalId":12345678901234567}"#;
     assert_ne!(
-        py.trim(),
-        jcs,
-        "Python keeps the exact integer; the two canonical forms disagree"
+        exact, jcs,
+        "an exact-integer serialiser and JCS disagree above 2^53"
     );
 }
 

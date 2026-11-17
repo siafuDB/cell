@@ -29,6 +29,5 @@ jobs:
         run: cargo fmt --check
       - name: Clippy
         run: cargo clippy --all-targets -- -D warnings
-      # One stress test compares the canonical form with Python's; python3 is on the runner.
       - name: Test (the stress tests, RFC 8785 vectors and the CLI)
         run: cargo test
