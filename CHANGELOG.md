@@ -6,7 +6,7 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
-## [0.2.0] - 2026-11-17
+## [0.1.1] - 2026-11-17
 
 ### Added
 
