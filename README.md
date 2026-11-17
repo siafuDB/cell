@@ -22,13 +22,19 @@ A change to the .cell spec is checked against SiafuDB, and the other way round.
 
 ## Try the prototype
 
+The prototype is a Rust crate, `siafudb-cell`, with a library and a `cell` command:
+
 ```sh
-node tools/cell.mjs check FILE.cell    # validate one cell
-node tools/cell.mjs render FILE.cell   # print its text with facts filled in
-node --test tools/cell.test.mjs        # the stress tests
+cargo run -- check FILE.cell    # validate one cell; exits 1 if it has errors
+cargo run -- render FILE.cell   # print its text with facts filled in
+cargo test                      # the stress tests, RFC 8785 test vectors and the CLI
+CELL_PG="psql -h HOST -U postgres" cargo test -- --ignored   # adds the Postgres round trip
 ```
 
 The validator is a prototype for stress-testing the draft, not the reference implementation.
+The library has the same functions as the command: `parse` (I-JSON, refusing duplicate
+members), `canonicalize` (RFC 8785), `hash`, `resolve`, `texts`, `render`, `validate`, `seal`
+and `verify_proof` (an Ed25519 proof in the shape of VC Data Integrity).
 
 ## Licence
 

@@ -1,0 +1,36 @@
+[package]
+name = "siafudb-cell"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+license = "Apache-2.0"
+authors = ["Bundu Foundation <foundation@bundu.org>"]
+repository = "https://github.com/siafuDB/cell"
+homepage = "https://siafudb.org"
+description = "Bundu Cell (.cell) 0.1.0 draft: a validator for self-contained JSON-LD records."
+keywords = ["cell", "json-ld", "jcs", "siafudb"]
+categories = ["encoding", "cryptography"]
+publish = false # the spec is a proposed 0.1.0 draft
+
+[lib]
+name = "siafudb_cell"
+path = "src/lib.rs"
+
+[[bin]]
+name = "cell"
+path = "src/main.rs"
+
+[dependencies]
+# preserve_order: a cell keeps its members in file order, as JSON.parse did. The language
+# map's first entry is the default text, and errors and warnings come out in field order.
+# float_roundtrip: parse every number to the nearest double, which JCS hashes.
+serde = "1"
+serde_json = { version = "1", features = ["preserve_order", "float_roundtrip"] }
+sha2 = "0.11"
+ed25519-dalek = "3"
+base64 = "0.22"
+unicode-normalization = "0.1"
+getrandom = "0.4"
+
+[lints.rust]
+unsafe_code = "forbid"
