@@ -27,9 +27,15 @@ stores. A change to the spec is checked against SiafuDB, and the other way round
 - **Every claim in the README is checked.** Counts, outputs and links come from a real run.
   `examples/quickstart.rs` is the README's Rust example; keep them identical.
 - **Nothing merges while anything is red or orange.** Every check and status on the head commit
-  must be green; the `All checks green` job enforces it.
+  must be green; the org-required `All checks green` check (nyuchi/.github) enforces it.
 - **Every pull request references an issue** and targets `staging`. Releases go from `staging`
   to `main` through a release pull request.
+- **Versions come from the tags.** A merge into `staging` is tagged as the next patch
+  (`staging-version.yml`), and a release to `main` as the next minor (`main-release.yml`). The
+  release PR passes the version check only if the version files hold the highest tag. So a PR
+  into `staging` sets `Cargo.toml`, `Cargo.lock`, both `plugin.json` files and the README to
+  the next patch, the version its merge will be tagged. If a merge left them behind, the next
+  PR catches them up the same way. Never set them to the next minor: `staging` refuses it.
 
 ## Before you push
 

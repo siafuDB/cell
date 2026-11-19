@@ -1,0 +1,52 @@
+{
+  "@context": [
+    "https://schema.org",
+    {
+      "bundu": "https://vocab.bundu.org/"
+    }
+  ],
+  "@type": "Person",
+  "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3D5",
+  "name": "Bryan Fawcett",
+  "alternateName": "bryanfawcett",
+  "email": "person@example.org",
+  "telephone": "+000 00 000 0000",
+  "nationality": {
+    "@type": "Country",
+    "name": "Zimbabwe",
+    "identifier": "ZW"
+  },
+  "knowsLanguage": "en",
+  "knowsAbout": [
+    "Technology",
+    "AI & Machine Learning",
+    "Fintech & Mobile Money",
+    "Wildlife & Conservation",
+    "African Identity"
+  ],
+  "bundu:defaultFamily": {
+    "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3F7",
+    "name": "The Sample family"
+  },
+  "memberOf": [
+    {
+      "@type": "Role",
+      "roleName": "Founder",
+      "memberOf": {
+        "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3F7",
+        "name": "The Sample family"
+      }
+    },
+    {
+      "@type": "Role",
+      "roleName": "Founder",
+      "memberOf": {
+        "@id": "urn:cell:01JDF4Q8R2M6T9W3X5Z7B1C3H9",
+        "name": "Nyuchi Africa"
+      }
+    }
+  ],
+  "text": "{{name}}, known as {{alternateName}}, is the {{memberOf.1.roleName}} of {{memberOf.1.memberOf.name}} and belongs to {{bundu:defaultFamily.name}}. Interests: {{knowsAbout.0}}, {{knowsAbout.1}}, {{knowsAbout.2}}, {{knowsAbout.3}} and {{knowsAbout.4}}.",
+  "cell:version": 1,
+  "cell:hash": "sha256-cBq5xEgff2dnJhSlKYdWVvjm9ZUG4EhzFIW2EgzOCgE"
+}
