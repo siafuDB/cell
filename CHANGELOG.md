@@ -6,6 +6,15 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+## [0.1.4] - 2026-11-19
+
+### Changed
+
+- `main` no longer carries GitHub's starter `rust.yml` either: it had been committed straight
+  to `main`, so removing it from `staging` (0.1.3) did not reach the release. Hotfix
+  [#24](https://github.com/siafuDB/cell/pull/24) removed it there
+  ([#22](https://github.com/siafuDB/cell/issues/22)).
+
 ## [0.1.3] - 2026-11-17
 
 ### Changed
