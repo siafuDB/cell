@@ -8,9 +8,15 @@ All notable changes to this repository are documented here. This file follows
 
 ### Changed
 
+- Version files set to 0.2.0, the released tag ([#14](https://github.com/siafuDB/cell/issues/14)).
 - Trunk-based ([#28](https://github.com/siafuDB/cell/issues/28)): removed `staging-version.yml` and
   `main-release.yml`, so a merge to `main` no longer tags or releases by itself. `release.yml`
   releases on a manual run only. Dependabot and the docs now target `main`.
+
+## [0.2.0] - 2026-11-19
+
+The release of everything from 0.1.1 to 0.1.4 below, tagged v0.2.0 by the release workflow of
+the time. The version files caught up with the tag in [#14](https://github.com/siafuDB/cell/issues/14).
 
 ## [0.1.4] - 2026-11-19
 

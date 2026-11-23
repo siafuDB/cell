@@ -11,7 +11,7 @@
 
 <a href="#see-it-in-30-seconds"><img src="docs/media/tamper-demo.gif" width="560" alt="A terminal recording: the cell command seals a health record, someone changes the medicine name behind the owner's back, and cell check catches it at once: the hash no longer matches the content. No server, no network."></a>
 
-**Version:** 0.1.4 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
+**Version:** 0.2.0 (prototype, not on crates.io) | **Spec:** [SPEC.md](SPEC.md) · [standards.bundu.org/cell](https://standards.bundu.org/cell/) | **Home:** [SiafuDB](https://siafudb.org) | **Licence:** Apache 2.0
 
 </div>
 
@@ -191,7 +191,7 @@ Bryan Fawcett, known as bryanfawcett, is the Founder of Nyuchi Africa and belong
 `cell help` prints:
 
 ```text
-cell 0.1.4: validate, render, hash, seal and verify .cell records
+cell 0.2.0: validate, render, hash, seal and verify .cell records
 Implements the .cell spec 0.1.0 draft, proposed.
 
 Usage: cell COMMAND [ARGS]
