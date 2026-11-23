@@ -1,6 +1,6 @@
 {
   "name": "cell",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "The .cell agent skill: what a cell is, the five rules that keep its facts and text from diverging, the hash, the proof and the version chain, how a cell maps to a SiafuDB node, and every `cell` command with an example. The .cell spec is a proposed 0.1.0 draft; nothing in it is final. Markdown only: no scripts and no hooks.",
   "author": {
     "name": "Bundu Foundation",
