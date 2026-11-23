@@ -35,7 +35,7 @@ All three must pass. CI runs the same commands, and nothing merges unless every 
 
 - **Open an issue first** for anything beyond a typo, and reference it in the pull request
   (`Refs #12` or `Closes #12`).
-- **Target `staging`.** `main` receives releases only.
+- **Target `main`.** The repo is trunk-based: branch from `main` and open a pull request back into it. There is no staging branch.
 - **Rust only** in code, tests and CI.
 - **Tests with every change.** A new behaviour needs a test; a bug fix needs a test that fails
   without the fix.

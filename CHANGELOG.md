@@ -6,6 +6,12 @@ All notable changes to this repository are documented here. This file follows
 
 ## [Unreleased]
 
+### Changed
+
+- Trunk-based ([#28](https://github.com/siafuDB/cell/issues/28)): removed `staging-version.yml` and
+  `main-release.yml`, so a merge to `main` no longer tags or releases by itself. `release.yml`
+  releases on a manual run only. Dependabot and the docs now target `main`.
+
 ## [0.1.4] - 2026-11-19
 
 ### Changed
