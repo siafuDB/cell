@@ -1,0 +1,26 @@
+name: Release
+
+# A release is a human decision: nothing here runs on a push or a merge. The owner
+# approves a release, then runs this workflow from the Actions tab. It tags the next
+# version on main and creates the GitHub release with generated notes, through the
+# org's trunk release workflow (nyuchi/.github). Leave bump empty to decide from the
+# title of the last merged PR; a MAJOR is only ever made by hand.
+
+on:
+  workflow_dispatch:
+    inputs:
+      bump:
+        description: "Override the bump: patch, minor or major. Empty decides from the PR title."
+        type: string
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  release:
+    permissions:
+      contents: write
+    uses: nyuchi/.github/.github/workflows/reusable-trunk-release.yml@77099422f1d5a7ce435c7dfcb16f10298ab6ee8a  # main, 2026-11-23
+    with:
+      bump: ${{ inputs.bump || '' }}

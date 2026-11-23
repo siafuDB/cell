@@ -28,14 +28,14 @@ stores. A change to the spec is checked against SiafuDB, and the other way round
   `examples/quickstart.rs` is the README's Rust example; keep them identical.
 - **Nothing merges while anything is red or orange.** Every check and status on the head commit
   must be green; the org-required `All checks green` check (nyuchi/.github) enforces it.
-- **Every pull request references an issue** and targets `staging`. Releases go from `staging`
-  to `main` through a release pull request.
-- **Versions come from the tags.** A merge into `staging` is tagged as the next patch
-  (`staging-version.yml`), and a release to `main` as the next minor (`main-release.yml`). The
-  release PR passes the version check only if the version files hold the highest tag. So a PR
-  into `staging` sets `Cargo.toml`, `Cargo.lock`, both `plugin.json` files and the README to
-  the next patch, the version its merge will be tagged. If a merge left them behind, the next
-  PR catches them up the same way. Never set them to the next minor: `staging` refuses it.
+- **Every pull request references an issue** and targets `main` (`Closes #N`). The repo is
+  trunk-based: there is no `staging` branch and no staging environment.
+- **Releases are manual.** Merging tags and publishes nothing. The owner approves a release and
+  runs `release.yml` (workflow_dispatch), which tags the next version through the org's trunk
+  release workflow. Never push a tag or create a release by hand, and never publish to crates.io
+  without the owner's say-so. The version lives in the tags; keep `Cargo.toml`, `Cargo.lock`,
+  both `plugin.json` files and the README at the latest released version (`tests/skill.rs`
+  checks the plugin and README against the crate).
 
 ## Before you push
 
